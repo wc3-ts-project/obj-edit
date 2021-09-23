@@ -1,1 +1,1 @@
-import './src/typing/compiletime'
+import './typing/compiletime'
