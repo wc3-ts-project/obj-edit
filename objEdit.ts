@@ -1,34 +1,28 @@
 import {
+  AbilityData,
   AbilityDataInput,
-  AbilityDataKeys,
-  AbilityDataOutput,
+  HeroAbilityData,
   HeroAbilityDataInput,
-  HeroAbilityDataKeys,
-  HeroAbilityDataOutput,
 } from './typing/ability'
+import { BuffData, BuffDataInput } from './typing/buff'
 import {
+  DestructableData,
   DestructableDataInput,
-  DestructableDataKeys,
-  DestructableDataOutput,
 } from './typing/destructable'
 import {
+  DoodadData,
   DoodadDataInput,
-  DoodadDataKeys,
-  DoodadDataOutput,
 } from './typing/doodad'
-import { ItemDataInput, ItemDataKeys, ItemDataOutput } from './typing/item'
+import { ItemData, ItemDataInput } from './typing/item'
 import {
+  HeroUnitData,
   HeroUnitDataInput,
-  HeroUnitDataKey,
-  HeroUnitDataOutput,
+  UnitData,
   UnitDataInput,
-  UnitDataKey,
-  UnitDataOutput,
 } from './typing/unit'
 import {
+  UpgradeData,
   UpgradeDataInput,
-  UpgradeDataKeys,
-  UpgradeDataOutput,
 } from './typing/upgrade'
 
 export const divNum = (val: number, by: number) => (val - (val % by)) / by
@@ -94,42 +88,52 @@ export const BUFF_ID_START = new IdGenerator('BM00')
 export const ITEM_ID_START = new IdGenerator('IM00')
 export const UPGD_ID_START = new IdGenerator('RM00')
 
-export let generateUnit: <T extends UnitDataKey>(
+export type WarObjectType = "unit" | "item" | "ability" | "destructable" | "doodad" | "buff" | "upgrade"
+export type WarObjectExt = "w3a" | "w3t" | "w3u" | "w3b" | "w3d" | "w3h" | "w3q"
+
+export let generateObject
+
+export let generateUnit: (
   data: UnitDataInput,
-  excludeKeys: Set<T>
-) => UnitDataOutput<T>
+  map?: WarMap
+) => UnitData
 
-export let generateHero: <T extends HeroUnitDataKey>(
+export let generateHero: (
   data: HeroUnitDataInput,
-  excludeKeys: Set<T>
-) => HeroUnitDataOutput<T>
+  map?: WarMap
+) => HeroUnitData
 
-export let generateItem: <T extends ItemDataKeys>(
+export let generateItem: (
   data: ItemDataInput,
-  excludeKeys: Set<T>
-) => ItemDataOutput<T>
+  map?: WarMap
+) => ItemData
 
-export let generateDestructable: <T extends DestructableDataKeys>(
+export let generateDestructable: (
   data: DestructableDataInput,
-  excludeKeys: Set<T>
-) => DestructableDataOutput<T>
+  map?: WarMap
+) => DestructableData
 
-export let generateDoodad: <T extends DoodadDataKeys>(
+export let generateDoodad: (
   data: DoodadDataInput,
-  excludeKeys: Set<T>
-) => DoodadDataOutput<T>
+  map?: WarMap
+) => DoodadData
 
-export let generateAbility: <T extends AbilityDataKeys>(
+export let generateAbility: (
   data: AbilityDataInput,
-  excludeKeys: Set<T>
-) => AbilityDataOutput<T>
+  map?: WarMap
+) => AbilityData
 
-export let generateHeroAbility: <T extends HeroAbilityDataKeys>(
+export let generateHeroAbility: (
   data: HeroAbilityDataInput,
-  excludeKeys: Set<T>
-) => HeroAbilityDataOutput<T>
+  map?: WarMap
+) => HeroAbilityData
 
-export let generateUpgrade: <T extends UpgradeDataKeys>(
+export let generateBuff: (
+  data: BuffDataInput,
+  map?: WarMap
+) => BuffData
+
+export let generateUpgrade: (
   data: UpgradeDataInput,
-  excludeKeys: Set<T>
-) => UpgradeDataOutput<T>
+  map?: WarMap
+) => UpgradeData
